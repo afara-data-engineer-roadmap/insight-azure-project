@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_im0",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sales_data_sample"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

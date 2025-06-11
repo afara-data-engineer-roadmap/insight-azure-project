@@ -1,0 +1,9 @@
+{
+	"name": "adf-salesinsightcuxm0611",
+	"location": "FranceCentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fe55dae3-7052-473a-9542-166cdb8ae498",
+		"tenantId": "248b58e1-dcea-4d35-9ddd-5613921da81f"
+	}
+}
