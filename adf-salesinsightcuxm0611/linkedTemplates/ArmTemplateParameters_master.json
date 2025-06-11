@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-salesinsightcuxm0611"
+		},
+		"LS_ADLS_SalesInsight_accountKey": {
+			"value": ""
+		},
+		"LS_ADLS_SalesInsight_properties_typeProperties_url": {
+			"value": "https://stsalesinsightcuxm0611.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
