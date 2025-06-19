@@ -19,7 +19,7 @@
 					"baseParameters": {
 						"storage_account": "stsalesinsightcuxm0611",
 						"container": "data",
-						"source_folder": "bronze/sales_orders/\n",
+						"source_folder": "bronze/sales_orders/",
 						"destination_folder": "silver/sales_orders/"
 					}
 				},
