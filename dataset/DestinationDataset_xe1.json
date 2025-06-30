@@ -1,0 +1,20 @@
+{
+	"name": "DestinationDataset_xe1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_SalesInsight",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "pp",
+				"fileSystem": "data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
