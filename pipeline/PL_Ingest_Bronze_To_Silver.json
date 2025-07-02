@@ -5,6 +5,8 @@
 			{
 				"name": "bronze_to_silver",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,12 +17,50 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/fara.niang@lightberg.com/insight-azure-project/bronze_to_silver",
+					"notebookPath": "/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/bronze_to_silver",
 					"baseParameters": {
 						"storage_account": "stsalesinsightcuxm0611",
 						"container": "data",
 						"source_folder": "bronze/sales_orders/",
 						"destination_folder": "silver/sales_orders/"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureDatabricks",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "silver_to_gold_dim_order_status",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "bronze_to_silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status",
+					"baseParameters": {
+						"jdbc_database": "sqldb-salesinsight-gold",
+						"adls_secret_key": "adls-access-key",
+						"sql_user_key": "sql-admin-user",
+						"sql_password_key": "sql-admin-password",
+						"silver_folder": "silver/sales_orders/",
+						"container": "data",
+						"secret_scope": "dbricks-scope-projet",
+						"jdbc_hostname": "sqlsvr-salesinsightcuxm0611.database.windows.net",
+						"storage_account": "stsalesinsightcuxm0611"
 					}
 				},
 				"linkedServiceName": {
