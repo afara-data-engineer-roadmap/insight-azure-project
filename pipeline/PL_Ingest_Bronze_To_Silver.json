@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "bronze_to_silver",
+				"name": "ACT_Load_BronzeToSilver",
 				"type": "DatabricksNotebook",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -31,44 +31,90 @@
 				}
 			},
 			{
-				"name": "silver_to_gold_dim_order_status",
-				"type": "DatabricksNotebook",
+				"name": "ACT_Set_DimensionNotebooksList",
+				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "bronze_to_silver",
+						"activity": "ACT_Load_BronzeToSilver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status",
-					"baseParameters": {
-						"jdbc_database": "sqldb-salesinsight-gold",
-						"adls_secret_key": "adls-access-key",
-						"sql_user_key": "sql-admin-user",
-						"sql_password_key": "sql-admin-password",
-						"silver_folder": "silver/sales_orders/",
-						"container": "data",
-						"secret_scope": "dbricks-scope-projet",
-						"jdbc_hostname": "sqlsvr-salesinsightcuxm0611.database.windows.net",
-						"storage_account": "stsalesinsightcuxm0611"
+					"variableName": "Notebook",
+					"value": [
+						"[\n   \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product.ipynb\",\n\n]"
+					]
+				}
+			},
+			{
+				"name": "ForEach_Dimension",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ACT_Set_DimensionNotebooksList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "LS_AzureDatabricks",
-					"type": "LinkedServiceReference"
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('Notebook')\n",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "ACT_Execute_Orchestrator",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/master_notebook",
+								"baseParameters": {
+									"storage_account": "stsalesinsightcuxm0611",
+									"silver_folder": "silver/sales_orders/",
+									"secret_scope": "dbricks-scope-projet",
+									"adls_secret_key": "adls-access-key",
+									"sql_user_key": "sql-admin-user",
+									"sql_password_key": "sql-admin-password",
+									"jdbc_hostname": "sqlsvr-salesinsightcuxm0611.database.windows.net",
+									"jdbc_database": "sqldb-salesinsight-gold",
+									"child_notebook_path": {
+										"value": "@item()",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_AzureDatabricks",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
 				}
 			}
 		],
+		"variables": {
+			"Notebook": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
