@@ -49,7 +49,7 @@
 				"typeProperties": {
 					"variableName": "Notebook",
 					"value": [
-						"[\n   \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product.ipynb\",\n\n]"
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product"
 					]
 				}
 			},
