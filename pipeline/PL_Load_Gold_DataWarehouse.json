@@ -1,46 +1,11 @@
 {
-	"name": "PL_Ingest_Bronze_To_Silver",
+	"name": "PL_Load_Gold_DataWarehouse",
 	"properties": {
 		"activities": [
 			{
-				"name": "ACT_Load_BronzeToSilver",
-				"type": "DatabricksNotebook",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebookPath": "/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/bronze_to_silver",
-					"baseParameters": {
-						"storage_account": "stsalesinsightcuxm0611",
-						"container": "data",
-						"source_folder": "bronze/sales_orders/",
-						"destination_folder": "silver/sales_orders/"
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "LS_AzureDatabricks",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "ACT_Set_DimensionNotebooksList",
 				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "ACT_Load_BronzeToSilver",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
 					"secureInput": false
@@ -48,14 +13,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "Notebook",
-					"value": [
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product",
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_customer",
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_date",
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status",
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_deal_size",
-						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_fact_sales"
-					]
+					"value": "[\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_customer\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_date\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_deal_size\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_fact_sales\"\n]"
 				}
 			},
 			{
@@ -115,11 +73,6 @@
 				}
 			}
 		],
-		"variables": {
-			"Notebook": {
-				"type": "Array"
-			}
-		},
 		"annotations": []
 	}
 }
