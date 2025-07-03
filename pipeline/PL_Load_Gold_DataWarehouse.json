@@ -13,7 +13,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "Notebook",
-					"value": "[\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_customer\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_date\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_deal_size\",\n    \"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_fact_sales\"\n]"
+					"value": [
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_product",
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_customer",
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_date",
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_order_status",
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_dim_deal_size",
+						"/Workspace/Repos/fara.niang@lightberg.com/insight-azure-project/databricks/notebooks/silver_to_gold_fact_sales"
+					]
 				}
 			},
 			{
@@ -73,6 +80,11 @@
 				}
 			}
 		],
+		"variables": {
+			"Notebook": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
