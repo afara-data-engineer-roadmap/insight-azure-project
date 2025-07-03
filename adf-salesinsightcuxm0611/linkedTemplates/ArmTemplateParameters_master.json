@@ -5,7 +5,13 @@
 		"factoryName": {
 			"value": "adf-salesinsightcuxm0611"
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
 		"LS_ADLS_SalesInsight_accountKey": {
+			"value": ""
+		},
+		"LS_AzureDatabricks_accessToken": {
 			"value": ""
 		},
 		"LS_ADLS_SalesInsight_properties_typeProperties_url": {

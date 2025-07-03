@@ -7,9 +7,17 @@
 			"metadata": "Nom de fabrique de données",
 			"defaultValue": "adf-salesinsightcuxm0611"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Chaîne sécurisée pour « accessToken » de « AzureDatabricks1 »"
+		},
 		"LS_ADLS_SalesInsight_accountKey": {
 			"type": "secureString",
 			"metadata": "Chaîne sécurisée pour « accountKey » de « LS_ADLS_SalesInsight »"
+		},
+		"LS_AzureDatabricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Chaîne sécurisée pour « accessToken » de « LS_AzureDatabricks »"
 		},
 		"LS_ADLS_SalesInsight_properties_typeProperties_url": {
 			"type": "string",
@@ -42,8 +50,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
 					"LS_ADLS_SalesInsight_accountKey": {
 						"value": "[parameters('LS_ADLS_SalesInsight_accountKey')]"
+					},
+					"LS_AzureDatabricks_accessToken": {
+						"value": "[parameters('LS_AzureDatabricks_accessToken')]"
 					},
 					"LS_ADLS_SalesInsight_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_SalesInsight_properties_typeProperties_url')]"
